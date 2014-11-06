@@ -31,5 +31,14 @@ namespace FoamStability.Properties {
                 return ((string)(this["outputPath"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("E:\\Program Files (x86)\\ffmpeg\\bin\\ffmpeg.exe")]
+        public string ffmpegLocation {
+            get {
+                return ((string)(this["ffmpegLocation"]));
+            }
+        }
     }
 }
