@@ -51,6 +51,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SaveOutputStrategies\CSVSaveOutput.cs" />
+    <Compile Include="SaveOutputStrategies\ISaveOutput.cs" />
     <EmbeddedResource Include="FoamStability.resx">
       <DependentUpon>FoamStability.cs</DependentUpon>
     </EmbeddedResource>

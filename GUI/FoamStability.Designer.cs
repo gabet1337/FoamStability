@@ -40,6 +40,8 @@
             this.RunButton = new System.Windows.Forms.Button();
             this.ProgressBar = new System.Windows.Forms.ProgressBar();
             this.ProcessImages = new System.ComponentModel.BackgroundWorker();
+            this.saveOutputDialog = new System.Windows.Forms.SaveFileDialog();
+            this.ProgressLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Screenshot)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.IntervalSelection)).BeginInit();
             this.SuspendLayout();
@@ -87,9 +89,9 @@
             this.InfoLabel.Enabled = false;
             this.InfoLabel.Location = new System.Drawing.Point(12, 74);
             this.InfoLabel.Name = "InfoLabel";
-            this.InfoLabel.Size = new System.Drawing.Size(158, 13);
+            this.InfoLabel.Size = new System.Drawing.Size(195, 13);
             this.InfoLabel.TabIndex = 5;
-            this.InfoLabel.Text = "Click in the middle of the beaker";
+            this.InfoLabel.Text = "Click in the middle of the desired beaker";
             this.InfoLabel.Visible = false;
             // 
             // PositionLabel
@@ -98,9 +100,9 @@
             this.PositionLabel.Enabled = false;
             this.PositionLabel.Location = new System.Drawing.Point(655, 90);
             this.PositionLabel.Name = "PositionLabel";
-            this.PositionLabel.Size = new System.Drawing.Size(94, 13);
+            this.PositionLabel.Size = new System.Drawing.Size(121, 13);
             this.PositionLabel.TabIndex = 6;
-            this.PositionLabel.Text = "Selected position: ";
+            this.PositionLabel.Text = "Selected position:  none";
             this.PositionLabel.Visible = false;
             // 
             // IntervalSelectionLabel
@@ -160,11 +162,27 @@
             this.ProcessImages.DoWork += new System.ComponentModel.DoWorkEventHandler(this.ProcessImages_DoWork);
             this.ProcessImages.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.Progress_Changed);
             // 
-            // Form1
+            // saveOutputDialog
+            // 
+            this.saveOutputDialog.DefaultExt = "csv";
+            this.saveOutputDialog.FileName = "*.csv";
+            this.saveOutputDialog.Filter = "CSV|*csv";
+            this.saveOutputDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog_FileOk);
+            // 
+            // ProgressLabel
+            // 
+            this.ProgressLabel.AutoSize = true;
+            this.ProgressLabel.Location = new System.Drawing.Point(673, 407);
+            this.ProgressLabel.Name = "ProgressLabel";
+            this.ProgressLabel.Size = new System.Drawing.Size(0, 13);
+            this.ProgressLabel.TabIndex = 12;
+            // 
+            // FoamStability
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(867, 462);
+            this.Controls.Add(this.ProgressLabel);
             this.Controls.Add(this.ProgressBar);
             this.Controls.Add(this.RunButton);
             this.Controls.Add(this.IntervalSelection);
@@ -174,7 +192,7 @@
             this.Controls.Add(this.Screenshot);
             this.Controls.Add(this.ContinueFromFileSelection);
             this.Controls.Add(this.FileLocation);
-            this.Name = "Form1";
+            this.Name = "FoamStability";
             this.Text = "FoamStability";
             ((System.ComponentModel.ISupportInitialize)(this.Screenshot)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.IntervalSelection)).EndInit();
@@ -198,6 +216,8 @@
         private System.Windows.Forms.Button RunButton;
         private System.Windows.Forms.ProgressBar ProgressBar;
         private System.ComponentModel.BackgroundWorker ProcessImages;
+        private System.Windows.Forms.SaveFileDialog saveOutputDialog;
+        private System.Windows.Forms.Label ProgressLabel;
     }
 }
 

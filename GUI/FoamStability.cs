@@ -9,6 +9,8 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using FoamStability;
 using System.Threading;
+using System.IO;
+using GUI.SaveOutputStrategies;
 
 namespace GUI
 {
@@ -16,6 +18,7 @@ namespace GUI
     {
 
         private Point BeakerLocation;
+        private string saveFileLocation;
 
         public FoamStability()
         {
@@ -25,6 +28,12 @@ namespace GUI
 
         private void ContinueFromFileSelection_Click(object sender, EventArgs e)
         {
+            if (!File.Exists(FileLocation.Text))
+            {
+                MessageBox.Show("The file could not be located", "Error");
+                return;
+            }
+
             InfoLabel.Enabled = true;
             InfoLabel.Visible = true;
             ImageGenerator ig = new ImageGenerator();
@@ -68,7 +77,13 @@ namespace GUI
             //generate all the images and start processing them one by one!
             if (BeakerLocation != null)
             {
-                ProcessImages.RunWorkerAsync();
+                DialogResult dr = saveOutputDialog.ShowDialog();
+                if (dr == DialogResult.OK)
+                {
+                    saveFileLocation = saveOutputDialog.FileName;
+                    ProcessImages.RunWorkerAsync();
+                }
+
             }
         }
 
@@ -76,24 +91,37 @@ namespace GUI
         {
             ImageGenerator ig = new ImageGenerator();
             int interval = int.Parse(IntervalSelection.Value.ToString());
-            this.InfoLabel.Text = interval.ToString();
+            //this.InfoLabel.Text = interval.ToString();
             List<string> li = ig.GetImagesWithInterval(@FileLocation.Text, interval.ToString());
-            int progressIntervals = 100 / li.Count;
+            int progressIntervals = 100 / (li.Count+1);
             int currentProgress = 0;
             List<int> foamHeights = new List<int>();
+            int d = 1;
             foreach (string s in li)
             {
-                ImageProcessor ip = new ImageProcessor(s);
-                foamHeights.Add(ip.GetFoamHeight(BeakerLocation.Y*2));
+                ProgressLabel.Text = "Processing image " + d++ + " of " + li.Count;
+                ImageProcessor ip = new ImageProcessor(@s);
+                foamHeights.Add(ip.GetFoamHeight(BeakerLocation.X*2));
                 currentProgress += progressIntervals;
                 ProcessImages.ReportProgress(currentProgress);
             }
+            ProgressLabel.Text = "Saving to file";
+            CSVSaveOutput csv = new CSVSaveOutput();
+            csv.SaveOutput(saveFileLocation, foamHeights, interval);
+            ProgressLabel.Text = "Saved to file and complete!";
             ProcessImages.ReportProgress(100);
+            
+        
         }
 
         private void Progress_Changed(object sender, ProgressChangedEventArgs e)
         {
             ProgressBar.Value = e.ProgressPercentage;
+        }
+
+        private void saveFileDialog_FileOk(object sender, CancelEventArgs e)
+        {
+
         }
 
     }

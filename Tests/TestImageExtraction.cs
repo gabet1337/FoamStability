@@ -24,6 +24,7 @@ namespace Tests
         {
             ImageGenerator ig = new ImageGenerator();
             List<string> li = ig.GetImagesWithInterval(video, "5");
+            foreach (string s in li) Console.WriteLine(s);
             Assert.IsNotNull(li);
             Assert.AreEqual(6, li.Count);
         }
