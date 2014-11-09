@@ -23,6 +23,7 @@ namespace GUI
         public FoamStability()
         {
             InitializeComponent();
+            this.Icon = Properties.Resources.FoamStabilitySmall;
             this.FileLocation.MouseClick += FileLocation_MouseClick;
         }
 
@@ -123,6 +124,5 @@ namespace GUI
         {
 
         }
-
     }
 }
