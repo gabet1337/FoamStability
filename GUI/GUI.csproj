@@ -89,10 +89,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="FS.ico" />
-    <None Include="Resources\FoamStabilityNew.ico" />
     <None Include="Resources\FoamStabilitySmall.ico" />
-    <None Include="Resources\FoamStability.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bg.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

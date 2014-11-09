@@ -71,6 +71,7 @@
             // 
             // Screenshot
             // 
+            this.Screenshot.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Screenshot.Enabled = false;
             this.Screenshot.ImageLocation = "";
             this.Screenshot.Location = new System.Drawing.Point(12, 90);
@@ -86,10 +87,13 @@
             // InfoLabel
             // 
             this.InfoLabel.AutoSize = true;
+            this.InfoLabel.BackColor = System.Drawing.Color.Transparent;
             this.InfoLabel.Enabled = false;
+            this.InfoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InfoLabel.ForeColor = System.Drawing.Color.Red;
             this.InfoLabel.Location = new System.Drawing.Point(12, 74);
             this.InfoLabel.Name = "InfoLabel";
-            this.InfoLabel.Size = new System.Drawing.Size(195, 13);
+            this.InfoLabel.Size = new System.Drawing.Size(286, 16);
             this.InfoLabel.TabIndex = 5;
             this.InfoLabel.Text = "Click in the middle of the desired beaker";
             this.InfoLabel.Visible = false;
@@ -97,7 +101,9 @@
             // PositionLabel
             // 
             this.PositionLabel.AutoSize = true;
+            this.PositionLabel.BackColor = System.Drawing.Color.Transparent;
             this.PositionLabel.Enabled = false;
+            this.PositionLabel.ForeColor = System.Drawing.Color.Red;
             this.PositionLabel.Location = new System.Drawing.Point(655, 90);
             this.PositionLabel.Name = "PositionLabel";
             this.PositionLabel.Size = new System.Drawing.Size(121, 13);
@@ -108,7 +114,9 @@
             // IntervalSelectionLabel
             // 
             this.IntervalSelectionLabel.AutoSize = true;
+            this.IntervalSelectionLabel.BackColor = System.Drawing.Color.Transparent;
             this.IntervalSelectionLabel.Enabled = false;
+            this.IntervalSelectionLabel.ForeColor = System.Drawing.Color.Red;
             this.IntervalSelectionLabel.Location = new System.Drawing.Point(656, 107);
             this.IntervalSelectionLabel.Name = "IntervalSelectionLabel";
             this.IntervalSelectionLabel.Size = new System.Drawing.Size(151, 13);
@@ -181,6 +189,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Info;
+            this.BackgroundImage = global::GUI.Properties.Resources.bg;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(867, 462);
             this.Controls.Add(this.ProgressLabel);
             this.Controls.Add(this.ProgressBar);
@@ -192,6 +203,7 @@
             this.Controls.Add(this.Screenshot);
             this.Controls.Add(this.ContinueFromFileSelection);
             this.Controls.Add(this.FileLocation);
+            this.DoubleBuffered = true;
             this.Name = "FoamStability";
             this.Text = "FoamStability";
             ((System.ComponentModel.ISupportInitialize)(this.Screenshot)).EndInit();
