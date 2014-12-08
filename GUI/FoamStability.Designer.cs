@@ -42,8 +42,13 @@
             this.ProcessImages = new System.ComponentModel.BackgroundWorker();
             this.saveOutputDialog = new System.Windows.Forms.SaveFileDialog();
             this.ProgressLabel = new System.Windows.Forms.Label();
+            this.RulerStart = new System.Windows.Forms.Label();
+            this.RulerEnd = new System.Windows.Forms.Label();
+            this.RulerDistance = new System.Windows.Forms.NumericUpDown();
+            this.RulerDistanceLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Screenshot)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.IntervalSelection)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RulerDistance)).BeginInit();
             this.SuspendLayout();
             // 
             // FileLocation
@@ -185,6 +190,64 @@
             this.ProgressLabel.Size = new System.Drawing.Size(0, 13);
             this.ProgressLabel.TabIndex = 12;
             // 
+            // RulerStart
+            // 
+            this.RulerStart.AutoSize = true;
+            this.RulerStart.BackColor = System.Drawing.Color.Transparent;
+            this.RulerStart.Enabled = false;
+            this.RulerStart.ForeColor = System.Drawing.Color.Red;
+            this.RulerStart.Location = new System.Drawing.Point(656, 125);
+            this.RulerStart.Name = "RulerStart";
+            this.RulerStart.Size = new System.Drawing.Size(87, 13);
+            this.RulerStart.TabIndex = 13;
+            this.RulerStart.Text = "Ruler start point: ";
+            this.RulerStart.Visible = false;
+            // 
+            // RulerEnd
+            // 
+            this.RulerEnd.AutoSize = true;
+            this.RulerEnd.BackColor = System.Drawing.Color.Transparent;
+            this.RulerEnd.Enabled = false;
+            this.RulerEnd.ForeColor = System.Drawing.Color.Red;
+            this.RulerEnd.Location = new System.Drawing.Point(656, 143);
+            this.RulerEnd.Name = "RulerEnd";
+            this.RulerEnd.Size = new System.Drawing.Size(85, 13);
+            this.RulerEnd.TabIndex = 14;
+            this.RulerEnd.Text = "Ruler end point: ";
+            this.RulerEnd.Visible = false;
+            // 
+            // RulerDistance
+            // 
+            this.RulerDistance.Location = new System.Drawing.Point(811, 159);
+            this.RulerDistance.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.RulerDistance.Name = "RulerDistance";
+            this.RulerDistance.Size = new System.Drawing.Size(43, 20);
+            this.RulerDistance.TabIndex = 15;
+            this.RulerDistance.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.RulerDistance.Visible = false;
+            this.RulerDistance.Enabled = false;
+            // 
+            // RulerDistanceLabel
+            // 
+            this.RulerDistanceLabel.AutoSize = true;
+            this.RulerDistanceLabel.BackColor = System.Drawing.Color.Transparent;
+            this.RulerDistanceLabel.ForeColor = System.Drawing.Color.Red;
+            this.RulerDistanceLabel.Location = new System.Drawing.Point(654, 162);
+            this.RulerDistanceLabel.Name = "RulerDistanceLabel";
+            this.RulerDistanceLabel.Size = new System.Drawing.Size(153, 13);
+            this.RulerDistanceLabel.TabIndex = 16;
+            this.RulerDistanceLabel.Text = "Distance between ruler points: ";
+            this.RulerDistanceLabel.Visible = false;
+            this.RulerDistanceLabel.Enabled = false;
+            // 
             // FoamStability
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -193,6 +256,10 @@
             this.BackgroundImage = global::GUI.Properties.Resources.bg;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(867, 462);
+            this.Controls.Add(this.RulerDistanceLabel);
+            this.Controls.Add(this.RulerDistance);
+            this.Controls.Add(this.RulerEnd);
+            this.Controls.Add(this.RulerStart);
             this.Controls.Add(this.ProgressLabel);
             this.Controls.Add(this.ProgressBar);
             this.Controls.Add(this.RunButton);
@@ -208,6 +275,7 @@
             this.Text = "FoamStability";
             ((System.ComponentModel.ISupportInitialize)(this.Screenshot)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.IntervalSelection)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RulerDistance)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -230,6 +298,12 @@
         private System.ComponentModel.BackgroundWorker ProcessImages;
         private System.Windows.Forms.SaveFileDialog saveOutputDialog;
         private System.Windows.Forms.Label ProgressLabel;
+        private System.Windows.Forms.Label RulerStart;
+        private System.Windows.Forms.Label RulerEnd;
+        private System.Windows.Forms.NumericUpDown RulerDistance;
+        private System.Windows.Forms.Label RulerDistanceLabel;
+
+        public System.EventHandler Screenshot_Paint { get; set; }
     }
 }
 

@@ -7,6 +7,6 @@ namespace GUI.SaveOutputStrategies
 {
     interface ISaveOutput
     {
-        void SaveOutput(string fileLocation, List<int> data, int interval);
+        void SaveOutput(string fileLocation, List<int> data, int interval, double pixelsPerCentimeter);
     }
 }

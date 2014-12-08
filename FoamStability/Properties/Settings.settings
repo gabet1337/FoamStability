@@ -2,11 +2,11 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="FoamStability.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="outputPath" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">D:\Dropbox\Skum\images\</Value>
-    </Setting>
     <Setting Name="ffmpegLocation" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">E:\Program Files (x86)\ffmpeg\bin\ffmpeg.exe</Value>
+      <Value Profile="(Default)">ffmpeg.exe</Value>
+    </Setting>
+    <Setting Name="OutputPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\temp\</Value>
     </Setting>
   </Settings>
 </SettingsFile>

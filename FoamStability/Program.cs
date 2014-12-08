@@ -21,7 +21,7 @@ namespace FoamStability
                 double fps = 1.0 / double.Parse(interval);
                 ProcessStartInfo start = new ProcessStartInfo();
                 start.Arguments = "-i " + "\"" + video + "\"" + " -r " + fps.ToString().Replace(',', '.') + " -s hd720 -f image2 "
-                    + "\"" + @Properties.Settings.Default.outputPath + "image-%5d." + imageType + "\"";
+                    + "\"" + @Properties.Settings.Default.OutputPath +"image-%5d." + imageType + "\"";
                 start.FileName = @"E:\Program Files (x86)\ffmpeg\bin\ffmpeg.exe";
                 //start.WindowStyle = ProcessWindowStyle.Hidden;
                 //start.CreateNoWindow = false;
@@ -45,7 +45,7 @@ namespace FoamStability
              * One possibility is to have a measure of how much 100pixels is in mm or cm.
              */
 
-            Image img = Image.FromFile(Path.Combine(@Properties.Settings.Default.outputPath, "image-1.bmp"));
+            Image img = Image.FromFile(Path.Combine(@Properties.Settings.Default.OutputPath, "image-1.bmp"));
             Bitmap b = new Bitmap(img);
             for (int i = 719; i >= 0; i--)
             {

@@ -37,20 +37,6 @@ namespace FoamStability
                 brightnessLevels[i] = brightnessSum / (double)(WIDTH + WIDTH);
             }
 
-            ////average it out
-            //double[] averagedBrightnessLevels = new double[image.Height];
-            //for (int i = 0; i < image.Height; i++)
-            //{
-            //    double s = 0.0;
-            //    for (int j = i; j < i+HEIGHT; j++)
-            //    {
-            //        if (i + j >= image.Height) s += brightnessLevels[i];
-            //        else s += brightnessLevels[i+j];
-            //    }
-            //    averagedBrightnessLevels[i] = s / (double)HEIGHT;
-            //    Console.WriteLine(i + "\t" + averagedBrightnessLevels[i]);
-            //}
-
             int result = 0;
             for (int i = 0; i < image.Height; i++)
             {

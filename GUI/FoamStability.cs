@@ -17,8 +17,10 @@ namespace GUI
     public partial class FoamStability : Form
     {
 
-        private Point BeakerLocation;
+        private Point BeakerLocation, RulerStartPoint, RulerEndPoint;
         private string saveFileLocation;
+        private string singleImage;
+        private int numOfClicks = 0;
 
         public FoamStability()
         {
@@ -39,6 +41,7 @@ namespace GUI
             InfoLabel.Visible = true;
             ImageGenerator ig = new ImageGenerator();
             string i = ig.GetSingleImage(@FileLocation.Text, "0.5");
+            singleImage = i;
             Screenshot.Image = Image.FromFile(i);
             Screenshot.Enabled = true;
             Screenshot.Visible = true;
@@ -52,15 +55,46 @@ namespace GUI
             this.RunButton.Enabled = true;
             this.ProgressBar.Visible = true;
             this.ProgressBar.Enabled = true;
+            this.RulerStart.Visible = true;
+            this.RulerStart.Enabled = true;
+            this.RulerEnd.Visible = true;
+            this.RulerEnd.Enabled = true;
+            this.RulerDistance.Visible = true;
+            this.RulerDistance.Enabled = true;
+            this.RulerDistanceLabel.Visible = true;
+            this.RulerDistanceLabel.Enabled = true;
         }
 
         private void Screenshot_Click(object sender, EventArgs e)
         {
             MouseEventArgs me = (MouseEventArgs)e;
-            BeakerLocation = me.Location;
-            PositionLabel.Text = "Selected position: (" + BeakerLocation.X*2 + ", " + BeakerLocation.Y*2 + ")";
-            
+            if (numOfClicks == 0)
+            {
+                BeakerLocation = me.Location;
+                PositionLabel.Text = "Selected position: (" + BeakerLocation.X * 2 + ", " + BeakerLocation.Y * 2 + ")";
+            }
+            else if (numOfClicks == 1)
+            {
+                RulerStartPoint = me.Location;
+                RulerStart.Text = "Ruler start point: (" + RulerStartPoint.X * 2 + ", " + RulerStartPoint.Y * 2 + ")";
+            }
+            else if (numOfClicks == 2)
+            {
+                RulerEndPoint = me.Location;
+                RulerEnd.Text = "Ruler start point: (" + RulerEndPoint.X * 2 + ", " + RulerEndPoint.Y * 2 + ")";
+            }
+            numOfClicks++;
         }
+
+        private void DrawPoint(Point p)
+        {
+            Graphics g = Graphics.FromHwnd(Screenshot.Handle);
+            SolidBrush brush = new SolidBrush(Color.Purple);
+            Rectangle rect = new Rectangle(p, new Size(2, 2));
+            g.FillRectangle(brush, rect);
+            g.Dispose();
+        }
+
         void FileLocation_MouseClick(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             DialogResult result = openVideoFile.ShowDialog();
@@ -88,6 +122,11 @@ namespace GUI
             }
         }
 
+        private double GetPixelsPerCentimeter()
+        {
+            return (double)(Math.Max(RulerStartPoint.Y, RulerEndPoint.Y) * 2 - Math.Min(RulerStartPoint.Y, RulerEndPoint.Y) * 2) / (double)RulerDistance.Value;
+        }
+
         private void ProcessImages_DoWork(object sender, DoWorkEventArgs e)
         {
             ImageGenerator ig = new ImageGenerator();
@@ -108,7 +147,7 @@ namespace GUI
             }
             ProgressLabel.Text = "Saving to file";
             CSVSaveOutput csv = new CSVSaveOutput();
-            csv.SaveOutput(saveFileLocation, foamHeights, interval);
+            csv.SaveOutput(saveFileLocation, foamHeights, interval, GetPixelsPerCentimeter());
             ProgressLabel.Text = "Saved to file and complete!";
             ProcessImages.ReportProgress(100);
             

@@ -9,8 +9,13 @@ namespace FoamStability
     public class ImageGenerator
     {
 
-        private string outputPath = @Properties.Settings.Default.outputPath;
-        private readonly string imageType = "bmp";
+        private string outputPath = @Properties.Settings.Default.OutputPath;
+        private readonly string imageType = "jpg";
+
+        public ImageGenerator()
+        {
+            if (!Directory.Exists(outputPath)) Directory.CreateDirectory(outputPath);
+        }
 
         /// <summary>
         /// 
@@ -22,7 +27,7 @@ namespace FoamStability
         {
             string imgName = "FOAM" + Guid.NewGuid().ToString();
             string args = "-ss " + ss + " -i " + "\"" + video + "\"" + " -vframes 1 -s hd720 -f image2 "
-                + "\"" + @Properties.Settings.Default.outputPath + imgName + "." + imageType + "\"";
+                + "\"" + outputPath + imgName + "." + imageType + "\"";
             Console.WriteLine(args);
             FFMPEG ffmpeg = new FFMPEG(args);
             if (ffmpeg.Run() != 0) return null;

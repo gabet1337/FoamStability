@@ -25,19 +25,19 @@ namespace FoamStability.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Dropbox\\Skum\\images\\")]
-        public string outputPath {
+        [global::System.Configuration.DefaultSettingValueAttribute("ffmpeg.exe")]
+        public string ffmpegLocation {
             get {
-                return ((string)(this["outputPath"]));
+                return ((string)(this["ffmpegLocation"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("E:\\Program Files (x86)\\ffmpeg\\bin\\ffmpeg.exe")]
-        public string ffmpegLocation {
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\temp\\")]
+        public string OutputPath {
             get {
-                return ((string)(this["ffmpegLocation"]));
+                return ((string)(this["OutputPath"]));
             }
         }
     }
