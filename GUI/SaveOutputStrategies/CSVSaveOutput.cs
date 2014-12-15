@@ -10,11 +10,12 @@ namespace GUI.SaveOutputStrategies
     {
         public void SaveOutput(string fileLocation, List<int> data, int interval, double pixelsPerCentimeter)
         {
+            Console.WriteLine("Centimeter per pixel: " + pixelsPerCentimeter);
             StringBuilder sb = new StringBuilder();
             int pos = 0;
             foreach (int i in data)
             {
-                double heightInCentimeter = (double)i / pixelsPerCentimeter;
+                double heightInCentimeter = (double)i * pixelsPerCentimeter - 1;
                 sb.Append(pos + ";" + heightInCentimeter + "\r\n");
                 pos += interval;
             }

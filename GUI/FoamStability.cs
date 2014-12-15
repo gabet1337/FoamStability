@@ -122,9 +122,9 @@ namespace GUI
             }
         }
 
-        private double GetPixelsPerCentimeter()
+        private double GetCentimetersPerPixel()
         {
-            return (double)(Math.Max(RulerStartPoint.Y, RulerEndPoint.Y) * 2 - Math.Min(RulerStartPoint.Y, RulerEndPoint.Y) * 2) / (double)RulerDistance.Value;
+            return (double)RulerDistance.Value / ((double)(Math.Max(RulerStartPoint.Y, RulerEndPoint.Y) *2 - Math.Min(RulerStartPoint.Y, RulerEndPoint.Y) *2 ));
         }
 
         private void ProcessImages_DoWork(object sender, DoWorkEventArgs e)
@@ -139,16 +139,16 @@ namespace GUI
             int d = 1;
             foreach (string s in li)
             {
-                ProgressLabel.Text = "Processing image " + d++ + " of " + li.Count;
+                //ProgressLabel.Text = "Processing image " + d++ + " of " + li.Count;
                 ImageProcessor ip = new ImageProcessor(@s);
                 foamHeights.Add(ip.GetFoamHeight(BeakerLocation.X*2));
                 currentProgress += progressIntervals;
                 ProcessImages.ReportProgress(currentProgress);
             }
-            ProgressLabel.Text = "Saving to file";
+            //ProgressLabel.Text = "Saving to file";
             CSVSaveOutput csv = new CSVSaveOutput();
-            csv.SaveOutput(saveFileLocation, foamHeights, interval, GetPixelsPerCentimeter());
-            ProgressLabel.Text = "Saved to file and complete!";
+            csv.SaveOutput(saveFileLocation, foamHeights, interval, GetCentimetersPerPixel());
+            //ProgressLabel.Text = "Saved to file and complete!";
             ProcessImages.ReportProgress(100);
             
         

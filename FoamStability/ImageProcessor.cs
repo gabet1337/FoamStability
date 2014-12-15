@@ -38,16 +38,17 @@ namespace FoamStability
             }
 
             int result = 0;
-            for (int i = 0; i < image.Height; i++)
+            for (int i = 100; i < image.Height-100; i++)
             {
                 if (brightnessLevels[i] > 0.1 &&
-                    (brightnessLevels[i + HEIGHT >= image.Height ? image.Height : i + HEIGHT] > 0.1 ||
-                    brightnessLevels[i - HEIGHT >= image.Height ? image.Height : i + HEIGHT] > 0.1))
+                    (brightnessLevels[i + HEIGHT >= image.Height ? image.Height-1 : i + HEIGHT] > 0.1 ||
+                    brightnessLevels[i - HEIGHT >= image.Height ? image.Height-1 : i + HEIGHT] > 0.1))
                 {
                     result++;
                     Console.WriteLine(i);
                 }
             }
+            Console.WriteLine("HEIGHT: " + result);
             return result;
         }
 
